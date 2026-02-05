@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For You 💖</title>
 
 <style>
@@ -56,24 +56,19 @@
     margin-top: 20px;
   }
 
-  #yesBtn {
-    background: white;
-    color: #ff4d6d;
-  }
-
   #noBtn {
-    background: white;
-    color: #555;
     position: absolute;
     top: 80px;
     left: 50%;
     transform: translateX(-50%);
+    color: #555;
   }
 
   #finalMessage {
     display: none;
     font-size: 1.6rem;
     line-height: 1.6;
+    margin-top: 30px;
   }
 </style>
 </head>
@@ -89,39 +84,41 @@
 
 <!-- Slide 2 -->
 <div class="slide">
-  <h1>Just a little moment… ✨</h1>
-  <p>Before we go ahead, I want you to know this comes from my heart.</p>
+  <h1>🌹 Roses for you 🌹</h1>
+  <p>Because you deserve more love than words can say.</p>
   <button class="next">Next ➜</button>
 </div>
 
 <!-- Slide 3 -->
 <div class="slide">
-  <h1>🌹 Roses for you 🌹</h1>
-  <p>Because some people deserve more than words.</p>
+  <h1>Take this rose 🌹</h1>
+  <p>It carries all my feelings.</p>
   <button class="next">Next ➜</button>
 </div>
 
-<!-- Slide 4 (THE MISSING SLIDE – NOW FIXED) -->
+<!-- Slide 4 (IMPORTANT NEW SLIDE) -->
 <div class="slide">
-  <h1>Here, take this rose 🌹</h1>
-  <p>Careful… it’s filled with all my feelings.</p>
+  <h1>I want to ask you something…</h1>
+  <p>And it’s a little special 💖</p>
   <button class="next">Next ➜</button>
 </div>
 
-<!-- Slide 5 -->
-<div class="slide" id="questionSlide">
-  <h1>Will you be my Valentine? 💖</h1>
+<!-- Slide 5 (QUESTION) -->
+<div class="slide" id="valentineSlide">
+  <div id="questionArea">
+    <h1>Will you be my Valentine? 💖</h1>
 
-  <div class="buttons">
-    <button id="yesBtn">YES 😍</button>
-    <button id="noBtn">NO 🙈</button>
+    <div class="buttons">
+      <button id="yesBtn">YES 😍</button>
+      <button id="noBtn">NO 🙈</button>
+    </div>
   </div>
 
-  <p id="finalMessage">
+  <div id="finalMessage">
     You just made my heart smile in the prettiest way.<br>
     From this moment on, you’re my favorite yes 💫<br><br>
     — Muskan 💕
-  </p>
+  </div>
 </div>
 
 <script>
@@ -138,9 +135,10 @@
 
   const noBtn = document.getElementById("noBtn");
   const yesBtn = document.getElementById("yesBtn");
-  const message = document.getElementById("finalMessage");
+  const questionArea = document.getElementById("questionArea");
+  const finalMessage = document.getElementById("finalMessage");
 
-  // NO button escapes
+  // NO button runs away (cannot be clicked properly)
   noBtn.addEventListener("mouseover", () => {
     const x = Math.random() * (window.innerWidth - 140);
     const y = Math.random() * (window.innerHeight - 140);
@@ -148,16 +146,10 @@
     noBtn.style.top = y + "px";
   });
 
-  // Even if NO clicked
-  noBtn.addEventListener("click", () => {
-    alert("Nice try 😌 But you know the answer already 💖");
-  });
-
-  // YES = clean ending
+  // YES button = clean transition
   yesBtn.addEventListener("click", () => {
-    yesBtn.style.display = "none";
-    noBtn.style.display = "none";
-    message.style.display = "block";
+    questionArea.style.display = "none";   // removes question completely
+    finalMessage.style.display = "block";  // shows final message only
   });
 </script>
 
