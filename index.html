@@ -1,107 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For You 💖</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      overflow: hidden;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>For You 💖</title>
 
-    h1 {
-      color: white;
-      font-size: 2.5rem;
-      margin-bottom: 30px;
-    }
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
 
-    .buttons {
-      position: relative;
-      height: 150px;
-    }
+  .slide {
+    display: none;
+    text-align: center;
+    color: white;
+    padding: 20px;
+  }
 
-    button {
-      padding: 14px 28px;
-      font-size: 18px;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      position: absolute;
-    }
+  .slide.active {
+    display: block;
+  }
 
-    #yesBtn {
-      background: white;
-      color: #ff4d6d;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
 
-    #noBtn {
-      background: white;
-      color: #555;
-      top: 70px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+  p {
+    font-size: 1.3rem;
+  }
 
-    .message {
-      color: white;
-      font-size: 1.5rem;
-      margin-top: 30px;
-      display: none;
-    }
-  </style>
+  button {
+    margin-top: 30px;
+    padding: 14px 28px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+
+  .next {
+    background: white;
+    color: #ff4d6d;
+  }
+
+  .buttons {
+    position: relative;
+    height: 150px;
+  }
+
+  #yesBtn {
+    background: white;
+    color: #ff4d6d;
+  }
+
+  #noBtn {
+    background: white;
+    color: #555;
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+</style>
 </head>
+
 <body>
 
-  <div>
-    <h1>Will you be my Valentine? 💖</h1>
+<!-- Slide 1 -->
+<div class="slide active">
+  <h1>Hi Chanky 💕</h1>
+  <p>I made something special just for you…</p>
+  <button class="next">Next ➜</button>
+</div>
 
-    <div class="buttons">
-      <button id="yesBtn">YES 😍</button>
-      <button id="noBtn">NO 🙈</button>
-    </div>
+<!-- Slide 2 -->
+<div class="slide">
+  <h1>🌹 Roses for you 🌹</h1>
+  <p>Because you deserve all the love in the world</p>
+  <button class="next">Next ➜</button>
+</div>
 
-    <div class="message" id="loveMessage">
-      You just made my heart smile in the prettiest way.<br>
-      From this moment on, you’re my favorite yes 💫<br><br>
-      — Muskan 💕
-    </div>
+<!-- Slide 3 -->
+<div class="slide">
+  <h1>Here’s a rose 🌹</h1>
+  <p>Hold it tight… it’s from my heart 💖</p>
+  <button class="next">Next ➜</button>
+</div>
+
+<!-- Slide 4 -->
+<div class="slide">
+  <h1>Will you be my Valentine? 💖</h1>
+
+  <div class="buttons">
+    <button id="yesBtn">YES 😍</button>
+    <button id="noBtn">NO 🙈</button>
   </div>
 
-  <script>
-    const noBtn = document.getElementById("noBtn");
-    const yesBtn = document.getElementById("yesBtn");
-    const message = document.getElementById("loveMessage");
+  <p id="finalMessage" style="display:none; margin-top:30px; font-size:1.4rem;">
+    You just made my heart smile in the prettiest way.<br>
+    From this moment on, you’re my favorite yes 💫<br><br>
+    — Muskan 💕
+  </p>
+</div>
 
-    // NO button runs away 😈
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * (window.innerWidth - 120);
-      const y = Math.random() * (window.innerHeight - 120);
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
-    });
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let currentSlide = 0;
 
-    // Even if NO is clicked 😌
-    noBtn.addEventListener("click", () => {
-      alert("Nice try 😏 But the answer is YES anyway 💖");
+  document.querySelectorAll('.next').forEach(btn => {
+    btn.addEventListener('click', () => {
+      slides[currentSlide].classList.remove('active');
+      currentSlide++;
+      slides[currentSlide].classList.add('active');
     });
+  });
 
-    // YES button magic ✨
-    yesBtn.addEventListener("click", () => {
-      message.style.display = "block";
-      yesBtn.style.display = "none";
-      noBtn.style.display = "none";
-    });
-  </script>
+  const noBtn = document.getElementById("noBtn");
+  const yesBtn = document.getElementById("yesBtn");
+  const message = document.getElementById("finalMessage");
+
+  // NO button runs away
+  noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 120);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  });
+
+  // Even if NO is clicked
+  noBtn.addEventListener("click", () => {
+    alert("Nice try 😏 But the answer is YES anyway 💖");
+  });
+
+  // YES button
+  yesBtn.addEventListener("click", () => {
+    yesBtn.style.display = "none";
+    noBtn.style.display = "none";
+    message.style.display = "block";
+  });
+</script>
 
 </body>
 </html>
