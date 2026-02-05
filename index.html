@@ -22,6 +22,7 @@
     text-align: center;
     color: white;
     padding: 20px;
+    max-width: 90%;
   }
 
   .slide.active {
@@ -29,31 +30,30 @@
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.4rem;
     margin-bottom: 20px;
   }
 
   p {
     font-size: 1.3rem;
+    line-height: 1.5;
   }
 
   button {
     margin-top: 30px;
-    padding: 14px 28px;
+    padding: 14px 32px;
     font-size: 18px;
     border: none;
     border-radius: 30px;
     cursor: pointer;
-  }
-
-  .next {
     background: white;
     color: #ff4d6d;
   }
 
   .buttons {
     position: relative;
-    height: 150px;
+    height: 160px;
+    margin-top: 20px;
   }
 
   #yesBtn {
@@ -65,9 +65,15 @@
     background: white;
     color: #555;
     position: absolute;
-    top: 70px;
+    top: 80px;
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  #finalMessage {
+    display: none;
+    font-size: 1.6rem;
+    line-height: 1.6;
   }
 </style>
 </head>
@@ -77,26 +83,33 @@
 <!-- Slide 1 -->
 <div class="slide active">
   <h1>Hi Chanky 💕</h1>
-  <p>I made something special just for you…</p>
+  <p>I made something special just for you.</p>
   <button class="next">Next ➜</button>
 </div>
 
 <!-- Slide 2 -->
 <div class="slide">
-  <h1>🌹 Roses for you 🌹</h1>
-  <p>Because you deserve all the love in the world</p>
+  <h1>Just a little moment… ✨</h1>
+  <p>Before we go ahead, I want you to know this comes from my heart.</p>
   <button class="next">Next ➜</button>
 </div>
 
 <!-- Slide 3 -->
 <div class="slide">
-  <h1>Here’s a rose 🌹</h1>
-  <p>Hold it tight… it’s from my heart 💖</p>
+  <h1>🌹 Roses for you 🌹</h1>
+  <p>Because some people deserve more than words.</p>
   <button class="next">Next ➜</button>
 </div>
 
-<!-- Slide 4 -->
+<!-- Slide 4 (THE MISSING SLIDE – NOW FIXED) -->
 <div class="slide">
+  <h1>Here, take this rose 🌹</h1>
+  <p>Careful… it’s filled with all my feelings.</p>
+  <button class="next">Next ➜</button>
+</div>
+
+<!-- Slide 5 -->
+<div class="slide" id="questionSlide">
   <h1>Will you be my Valentine? 💖</h1>
 
   <div class="buttons">
@@ -104,7 +117,7 @@
     <button id="noBtn">NO 🙈</button>
   </div>
 
-  <p id="finalMessage" style="display:none; margin-top:30px; font-size:1.4rem;">
+  <p id="finalMessage">
     You just made my heart smile in the prettiest way.<br>
     From this moment on, you’re my favorite yes 💫<br><br>
     — Muskan 💕
@@ -127,20 +140,20 @@
   const yesBtn = document.getElementById("yesBtn");
   const message = document.getElementById("finalMessage");
 
-  // NO button runs away
+  // NO button escapes
   noBtn.addEventListener("mouseover", () => {
-    const x = Math.random() * (window.innerWidth - 120);
-    const y = Math.random() * (window.innerHeight - 120);
+    const x = Math.random() * (window.innerWidth - 140);
+    const y = Math.random() * (window.innerHeight - 140);
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
   });
 
-  // Even if NO is clicked
+  // Even if NO clicked
   noBtn.addEventListener("click", () => {
-    alert("Nice try 😏 But the answer is YES anyway 💖");
+    alert("Nice try 😌 But you know the answer already 💖");
   });
 
-  // YES button
+  // YES = clean ending
   yesBtn.addEventListener("click", () => {
     yesBtn.style.display = "none";
     noBtn.style.display = "none";
